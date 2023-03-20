@@ -1,5 +1,7 @@
 {
   "name": "todo-reactnative",
+  "description": "TODO web application with React Native.",
+  "author": "David Seija",
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
