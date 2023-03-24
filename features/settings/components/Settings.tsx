@@ -1,35 +1,30 @@
 import { useState } from 'react';
 import { StyleSheet, Switch } from 'react-native';
 
-import { Text, View } from '../../../shared/components/Themed';
+import {
+  Text,
+  View,
+  ViewContainer,
+  ViewContent,
+} from '../../../shared/components';
 
-export default function SettingsView() {
+const SettingsView = () => {
   const [darkMode, setDarkMode] = useState(true);
   const toggleDarkMode = () => setDarkMode((prevVal) => !prevVal);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.list}>
+    <ViewContainer>
+      <ViewContent>
         <View style={styles.listItem}>
           <Text style={styles.listItemText}>Dark Mode</Text>
           <Switch onValueChange={toggleDarkMode} value={darkMode} />
         </View>
-      </View>
-    </View>
+      </ViewContent>
+    </ViewContainer>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  list: {
-    paddingHorizontal: 20,
-    width: '100%',
-    maxWidth: '396px',
-  },
   listItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -39,3 +34,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+export default SettingsView;
