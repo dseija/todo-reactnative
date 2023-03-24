@@ -1,18 +1,20 @@
-import { StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Switch } from 'react-native';
 
-import EditScreenInfo from '../../../shared/components/EditScreenInfo';
 import { Text, View } from '../../../shared/components/Themed';
 
 export default function SettingsView() {
+  const [darkMode, setDarkMode] = useState(true);
+  const toggleDarkMode = () => setDarkMode((prevVal) => !prevVal);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Settings</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="app/(tabs)/settings.tsx" />
+      <View style={styles.list}>
+        <View style={styles.listItem}>
+          <Text style={styles.listItemText}>Dark Mode</Text>
+          <Switch onValueChange={toggleDarkMode} value={darkMode} />
+        </View>
+      </View>
     </View>
   );
 }
@@ -23,13 +25,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  list: {
+    paddingHorizontal: 20,
+    width: '100%',
+    maxWidth: '396px',
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  listItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  listItemText: {
+    fontSize: 16,
   },
 });
