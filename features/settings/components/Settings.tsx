@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { StyleSheet, Switch } from 'react-native';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 import {
   Text,
@@ -7,17 +7,25 @@ import {
   ViewContainer,
   ViewContent,
 } from '../../../shared/components';
+import { toggleThemeMode } from '../settingsSlice';
 
 const SettingsView = () => {
-  const [darkMode, setDarkMode] = useState(true);
-  const toggleDarkMode = () => setDarkMode((prevVal) => !prevVal);
+  const dispatch = useAppDispatch();
+  const settings = useAppSelector((state) => state.settings.settings);
+
+  const toggleDarkMode = () => {
+    dispatch(toggleThemeMode());
+  };
 
   return (
     <ViewContainer>
       <ViewContent>
         <View style={styles.listItem}>
           <Text style={styles.listItemText}>Dark Mode</Text>
-          <Switch onValueChange={toggleDarkMode} value={darkMode} />
+          <Switch
+            onValueChange={toggleDarkMode}
+            value={settings.themeMode === 'dark'}
+          />
         </View>
       </ViewContent>
     </ViewContainer>
