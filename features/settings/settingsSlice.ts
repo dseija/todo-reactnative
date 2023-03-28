@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { DEFAULT_SETTINGS } from './settingsConstants';
 import { SettingsState } from './settingsTypes';
 
 const initialState: { settings: SettingsState } = {
-  settings: {
-    themeMode: 'dark',
-  },
+  settings: DEFAULT_SETTINGS,
 };
 
 export const settingsSlice = createSlice({
