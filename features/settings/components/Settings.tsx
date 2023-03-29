@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { StyleSheet, Switch } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
@@ -7,11 +8,16 @@ import {
   ViewContainer,
   ViewContent,
 } from '../../../shared/components';
+import { saveSettings } from '../settingsHelpers';
 import { toggleThemeMode } from '../settingsSlice';
 
 const SettingsView = () => {
   const dispatch = useAppDispatch();
   const settings = useAppSelector((state) => state.settings.settings);
+
+  useEffect(() => {
+    saveSettings(settings);
+  }, [settings]);
 
   const toggleDarkMode = () => {
     dispatch(toggleThemeMode());
